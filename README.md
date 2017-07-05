@@ -40,6 +40,25 @@ allprojects {
 }
 ```
 
+## 引入的库：
+```gradle
+    // Model-View-Intent
+    compile 'com.hannesdorfmann.mosby3:mvi:3.0.4'
+    // Plain MVP
+    compile 'com.hannesdorfmann.mosby3:mvp:3.0.4'
+    // MVP + ViewState support
+    compile 'com.hannesdorfmann.mosby3:viewstate:3.0.4'
+
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+
+    compile 'io.reactivex.rxjava2:rxjava:2.1.1'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    compile 'com.orhanobut:logger:1.15'
+```
+
 ## 示例
 
 核心代码（在你项目的Application中的onCreate方法里面初始化）
