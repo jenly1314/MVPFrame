@@ -10,7 +10,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
- * @date 2017/7/4
  */
 
 public class ApiHttp {

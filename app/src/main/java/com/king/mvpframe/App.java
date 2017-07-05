@@ -8,7 +8,6 @@ import com.orhanobut.logger.Logger;
 
 /**
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
- * @date 2017/7/5
  */
 
 public class App extends Application {

@@ -13,7 +13,6 @@ import com.king.frame.R;
 
 /**
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
- * @date 2017/7/3
  */
 
 public abstract class ContentActivity extends AppCompatActivity {

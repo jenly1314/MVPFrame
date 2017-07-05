@@ -18,7 +18,6 @@ import com.king.frame.mvp.base.BaseActivity;
 import com.king.mvpframe.bean.IPAddress;
 import com.king.mvpframe.mvp.presenter.IPAddrPresenter;
 import com.king.mvpframe.mvp.view.IIPAddrView;
-import com.orhanobut.logger.Logger;
 
 import java.util.regex.Pattern;
 

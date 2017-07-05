@@ -11,7 +11,6 @@ import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 
 /**
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
- * @date 2017/7/3
  */
 
 public abstract class BaseFragment<V extends BaseView, P extends BasePresenter<V>> extends MvpFragment<V, P> {
