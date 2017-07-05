@@ -1,0 +1,63 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    provided 'com.android.support:appcompat-v7:25.3.1'
+    testCompile 'junit:junit:4.12'
+
+    // Model-View-Intent
+    compile 'com.hannesdorfmann.mosby3:mvi:3.0.4'
+    // Plain MVP
+    compile 'com.hannesdorfmann.mosby3:mvp:3.0.4'
+    // MVP + ViewState support
+    compile 'com.hannesdorfmann.mosby3:viewstate:3.0.4'
+
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+
+    compile 'io.reactivex.rxjava2:rxjava:2.1.1'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    compile 'com.orhanobut:logger:1.15'
+}
+
+
+//添加
+publish {
+    userOrg = 'jenly'//bintray.com用户名
+    groupId = 'com.king.frame'//jcenter上的路径
+    artifactId = 'mvpframe'//项目名称
+    publishVersion = '1.0.0'//版本号
+    desc = 'MVPFrame for Android'//描述
+    website = 'https://github.com/jenly1314/MVPFrame'//网站
+}
