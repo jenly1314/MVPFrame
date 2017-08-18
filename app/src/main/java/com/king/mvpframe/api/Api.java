@@ -23,10 +23,7 @@ public class Api {
         return ApiManager.getInstance().getApiService(ApiService.class);
     }
 
-    public static void getApiAddr(String ip, SimpleCallback<IPAddress,IIPAddrView> callback){
-        getApiService().getIPAddr(ip)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(ApiObserver.getApiObserver(callback));
+    public static void getApiAddr(String ip, SimpleCallback<IPAddress> callback){
+        ApiObserver.subscribe(getApiService().getIPAddr(ip),callback);
     }
 }

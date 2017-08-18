@@ -2,9 +2,12 @@ package com.king.frame.api;
 
 import com.orhanobut.logger.Logger;
 
+import io.reactivex.Observable;
 import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
@@ -59,4 +62,11 @@ public class ApiObserver<T> implements Observer<T> {
         return new ApiObserver<>( callback );
     }
 
+    public static <T> void subscribe(Observable<T> observable, SimpleCallback<T> callback){
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getApiObserver(callback));
+    }
+
 }
+

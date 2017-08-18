@@ -1,11 +1,11 @@
 package com.king.frame.api;
 
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -27,20 +27,39 @@ public class ApiHttp {
 
     private Retrofit mRetrofit;
 
+
+    public ApiHttp(String baseUrl){
+        this(baseUrl,DEFAULT_TIME_OUT);
+    }
+
+    public ApiHttp(String baseUrl,int timeout){
+        this(baseUrl,timeout,null);
+    }
+
+
+    public ApiHttp(String baseUrl,OkHttpClient okHttpClient){
+        this(baseUrl,DEFAULT_TIME_OUT,okHttpClient);
+    }
+
     /**
      *
      * @param baseUrl
      * @param timeout  超时时间 单位/秒
+     * @param okHttpClient
      */
-    public ApiHttp(String baseUrl,int timeout){
+    private ApiHttp(String baseUrl,int timeout,OkHttpClient okHttpClient){
         this.mBaseUrl = baseUrl;
         this.mTimeout = timeout;
 
-        mOkHttpClient = new OkHttpClient.Builder()
-                .connectTimeout(mTimeout, TimeUnit.SECONDS)
-                .readTimeout(mTimeout, TimeUnit.SECONDS)
-                .writeTimeout(mTimeout, TimeUnit.SECONDS)
-                .build();
+        if(okHttpClient == null){
+            mOkHttpClient = new OkHttpClient.Builder()
+                    .connectTimeout(mTimeout, TimeUnit.SECONDS)
+                    .readTimeout(mTimeout, TimeUnit.SECONDS)
+                    .writeTimeout(mTimeout, TimeUnit.SECONDS)
+                    .build();
+        }else{
+            this.mOkHttpClient = okHttpClient;
+        }
 
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(mBaseUrl)
@@ -52,6 +71,10 @@ public class ApiHttp {
 
     public Retrofit getRetrofit(){
         return mRetrofit;
+    }
+
+    public OkHttpClient getOkHttpClient(){
+        return mOkHttpClient;
     }
 
 }

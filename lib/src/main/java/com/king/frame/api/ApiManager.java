@@ -43,11 +43,13 @@ public class ApiManager {
         return mApiHttp;
     }
 
+    public void setApiHttp(ApiHttp apiHttp){
+        this.mApiHttp = apiHttp;
+    }
+
     public <T> T getApiService(Class<T> service){
         return mApiHttp.getRetrofit().create(service);
     }
-
-
 
 
 }

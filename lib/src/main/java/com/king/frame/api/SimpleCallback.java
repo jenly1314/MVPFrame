@@ -6,11 +6,11 @@ import com.king.frame.mvp.base.BaseView;
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 
-public abstract class SimpleCallback<T,V extends BaseView> implements ApiCallback<T> {
+public abstract class SimpleCallback<T> implements ApiCallback<T> {
 
-    private V mView;
+    private BaseView mView;
 
-    public SimpleCallback(V iview){
+    public SimpleCallback(BaseView iview){
         this.mView = iview;
     }
 

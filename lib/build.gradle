@@ -43,7 +43,7 @@ dependencies {
 
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
-    compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
 
     compile 'io.reactivex.rxjava2:rxjava:2.1.1'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
@@ -57,7 +57,7 @@ publish {
     userOrg = 'jenly'//bintray.com用户名
     groupId = 'com.king.frame'//jcenter上的路径
     artifactId = 'mvpframe'//项目名称
-    publishVersion = '1.0.0'//版本号
+    publishVersion = '1.0.1'//版本号
     desc = 'MVPFrame for Android'//描述
     website = 'https://github.com/jenly1314/MVPFrame'//网站
 }

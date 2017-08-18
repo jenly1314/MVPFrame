@@ -16,17 +16,17 @@ MVPFrame for Android 是一个集合了 Retrofit2 + RXJava2 + Mosby3 二次封�
 <dependency>
   <groupId>com.king.frame</groupId>
   <artifactId>mvpframe</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <type>pom</type>
 </dependency>
 ```
 ### Gradle:
 ```gradle
-compile 'com.king.frame:mvpframe:1.0.0'
+compile 'com.king.frame:mvpframe:1.0.1'
 ```
 ### Lvy:
 ```lvy
-<dependency org='com.king.frame' name='mvpframe' rev='1.0.0'>
+<dependency org='com.king.frame' name='mvpframe' rev='1.0.1'>
   <artifact name='$AID' ext='pom'></artifact>
 </dependency>
 ```
@@ -51,7 +51,7 @@ allprojects {
 
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
-    compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
 
     compile 'io.reactivex.rxjava2:rxjava:2.1.1'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
@@ -79,11 +79,8 @@ public class Api {
         return ApiManager.getInstance().getApiService(ApiService.class);
     }
 
-    public static void getApiAddr(String ip, SimpleCallback<IPAddress,IIPAddrView> callback){
-        getApiService().getIPAddr(ip)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(ApiObserver.getApiObserver(callback));
+    public static void getApiAddr(String ip, SimpleCallback<IPAddress> callback){
+        ApiObserver.subscribe(getApiService().getIPAddr(ip),callback);
     }
 }
 ```
