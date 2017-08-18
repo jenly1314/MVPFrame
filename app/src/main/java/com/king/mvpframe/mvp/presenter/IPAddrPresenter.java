@@ -19,7 +19,7 @@ public class IPAddrPresenter extends BasePresenter<IIPAddrView>{
     public void getIp(String ip){
         Logger.d("query:" + ip);
         getView().showProgress();
-        Api.getApiAddr(ip, new SimpleCallback<IPAddress, IIPAddrView>(getView()) {
+        Api.getApiAddr(ip, new SimpleCallback<IPAddress>(getView()) {
             @Override
             public void onNext(IPAddress ipAddress) {
                 getView().onGetIPAddr(ipAddress);
