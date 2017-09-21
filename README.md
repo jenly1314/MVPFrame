@@ -16,17 +16,17 @@ MVPFrame for Android 是一个集合了 Retrofit2 + RXJava2 + Mosby3 二次封�
 <dependency>
   <groupId>com.king.frame</groupId>
   <artifactId>mvpframe</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
   <type>pom</type>
 </dependency>
 ```
 ### Gradle:
 ```gradle
-compile 'com.king.frame:mvpframe:1.0.1'
+compile 'com.king.frame:mvpframe:1.0.2'
 ```
 ### Lvy:
 ```lvy
-<dependency org='com.king.frame' name='mvpframe' rev='1.0.1'>
+<dependency org='com.king.frame' name='mvpframe' rev='1.0.2'>
   <artifact name='$AID' ext='pom'></artifact>
 </dependency>
 ```
