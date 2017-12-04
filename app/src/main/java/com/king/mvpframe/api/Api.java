@@ -15,12 +15,17 @@ import io.reactivex.schedulers.Schedulers;
 
 public class Api {
 
+    private static ApiService apiService;
+
     private Api(){
         throw new AssertionError();
     }
 
     private static ApiService getApiService(){
-        return ApiManager.getInstance().getApiService(ApiService.class);
+        if(apiService == null){
+            apiService = ApiManager.getInstance().getApiService(ApiService.class);
+        }
+        return apiService;
     }
 
     public static void getApiAddr(String ip, SimpleCallback<IPAddress> callback){

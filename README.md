@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/mit-license.php)
 [![Blog](https://img.shields.io/badge/blog-Jenly-9933CC.svg)](http://blog.csdn.net/jenly121)
 
-MVPFrame for Android 是一个集合了 Retrofit2 + RXJava2 + Mosby3 二次封装的MVP架构基类库，方便敏捷开发，后续会持续更新并完善。
+MVPFrame for Android 是一个集合了 Retrofit2 + RXJava2 + OkHttp3 + Mosby3 二次封装的MVP架构基类库，方便敏捷开发，后续会持续更新并完善。
 
 ## Gif 展示
 ![Image](GIF.gif)
@@ -16,17 +16,17 @@ MVPFrame for Android 是一个集合了 Retrofit2 + RXJava2 + Mosby3 二次封�
 <dependency>
   <groupId>com.king.frame</groupId>
   <artifactId>mvpframe</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
   <type>pom</type>
 </dependency>
 ```
 ### Gradle:
 ```gradle
-compile 'com.king.frame:mvpframe:1.0.2'
+compile 'com.king.frame:mvpframe:1.0.3'
 ```
 ### Lvy:
 ```lvy
-<dependency org='com.king.frame' name='mvpframe' rev='1.0.2'>
+<dependency org='com.king.frame' name='mvpframe' rev='1.0.3'>
   <artifact name='$AID' ext='pom'></artifact>
 </dependency>
 ```
@@ -52,6 +52,9 @@ allprojects {
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+
+    compile 'com.squareup.okhttp3:okhttp:3.9.1'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.9.1'
 
     compile 'io.reactivex.rxjava2:rxjava:2.1.1'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'

@@ -1,6 +1,5 @@
 package com.king.frame.api;
 
-
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -32,49 +31,45 @@ public class ApiHttp {
         this(baseUrl,DEFAULT_TIME_OUT);
     }
 
-    public ApiHttp(String baseUrl,int timeout){
-        this(baseUrl,timeout,null);
-    }
-
-
-    public ApiHttp(String baseUrl,OkHttpClient okHttpClient){
-        this(baseUrl,DEFAULT_TIME_OUT,okHttpClient);
-    }
-
     /**
      *
      * @param baseUrl
      * @param timeout  超时时间 单位/秒
-     * @param okHttpClient
      */
-    private ApiHttp(String baseUrl,int timeout,OkHttpClient okHttpClient){
+    public ApiHttp(String baseUrl,int timeout){
         this.mBaseUrl = baseUrl;
         this.mTimeout = timeout;
-
-        if(okHttpClient == null){
-            mOkHttpClient = new OkHttpClient.Builder()
-                    .connectTimeout(mTimeout, TimeUnit.SECONDS)
-                    .readTimeout(mTimeout, TimeUnit.SECONDS)
-                    .writeTimeout(mTimeout, TimeUnit.SECONDS)
-                    .build();
-        }else{
-            this.mOkHttpClient = okHttpClient;
-        }
-
-        mRetrofit = new Retrofit.Builder()
-                .baseUrl(mBaseUrl)
-                .addConverterFactory( GsonConverterFactory.create())
-                .addCallAdapterFactory( RxJava2CallAdapterFactory.create())
-                .client(mOkHttpClient)
-                .build();
     }
 
     public Retrofit getRetrofit(){
+        if(mRetrofit == null){
+            mRetrofit = new Retrofit.Builder()
+                    .baseUrl(mBaseUrl)
+                    .addConverterFactory( GsonConverterFactory.create())
+                    .addCallAdapterFactory( RxJava2CallAdapterFactory.create())
+                    .client(getOkHttpClient())
+                    .build();
+        }
         return mRetrofit;
     }
 
     public OkHttpClient getOkHttpClient(){
+        if(mOkHttpClient == null) {
+            mOkHttpClient = new OkHttpClient.Builder()
+                    .connectTimeout(mTimeout, TimeUnit.SECONDS)
+                    .readTimeout(mTimeout, TimeUnit.SECONDS)
+                    .writeTimeout(mTimeout, TimeUnit.SECONDS)
+                    .addInterceptor(new LogInterceptor())
+                    .build();
+        }
         return mOkHttpClient;
     }
 
+    public void setOkHttpClient(OkHttpClient okHttpClient) {
+        this.mOkHttpClient = okHttpClient;
+    }
+
+    public void setRetrofit(Retrofit retrofit) {
+        this.mRetrofit = retrofit;
+    }
 }
