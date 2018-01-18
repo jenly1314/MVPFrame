@@ -31,7 +31,7 @@ public class BaseProgressDialog extends Dialog {
         initUI();
     }
 
-    protected BaseProgressDialog(Context context, boolean cancelable, DialogInterface.OnCancelListener cancelListener) {
+    public BaseProgressDialog(Context context, boolean cancelable, DialogInterface.OnCancelListener cancelListener) {
         super(context, cancelable, cancelListener);
         initUI();
     }
@@ -46,7 +46,7 @@ public class BaseProgressDialog extends Dialog {
 
     private void initUI() {
         getWindow().getAttributes().gravity = Gravity.CENTER;
-        setCanceledOnTouchOutside(true);
+        setCanceledOnTouchOutside(false);
     }
 
 }

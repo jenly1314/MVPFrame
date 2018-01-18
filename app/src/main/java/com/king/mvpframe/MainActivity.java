@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.king.frame.mvp.base.BaseActivity;
+import com.king.frame.mvp.base.QuickActivity;
 import com.king.mvpframe.bean.IPAddress;
 import com.king.mvpframe.mvp.presenter.IPAddrPresenter;
 import com.king.mvpframe.mvp.view.IIPAddrView;
@@ -25,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity<IIPAddrView, IPAddrPresenter> implements IIPAddrView {
+public class MainActivity extends QuickActivity<IIPAddrView, IPAddrPresenter> implements IIPAddrView {
 
     @BindView(R.id.pb)
     ProgressBar pb;
@@ -37,6 +38,8 @@ public class MainActivity extends BaseActivity<IIPAddrView, IPAddrPresenter> imp
     TextView tvAddr;
 
     private Toast mToast;
+
+
 
     @NonNull
     @Override
@@ -112,16 +115,19 @@ public class MainActivity extends BaseActivity<IIPAddrView, IPAddrPresenter> imp
 
     @Override
     public void showProgress() {
+        super.showProgress();
         pb.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onCompleted() {
+//        super.onCompleted();
         pb.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void onError(Throwable e) {
+//        super.onError(e);
         tvAddr.setText("获取失败！");
     }
 

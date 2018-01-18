@@ -40,11 +40,18 @@ public abstract class BaseDialogFragment<V extends BaseView, P extends BasePrese
         return (T)mRootView.findViewById(id);
     }
 
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initData();
+    }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated( savedInstanceState );
         super.getDialog().getWindow().getAttributes().windowAnimations = R.style.dialog_animation;
-        initData();
+
     }
 
     public void replaceFragment(@IdRes int id, Fragment fragment) {

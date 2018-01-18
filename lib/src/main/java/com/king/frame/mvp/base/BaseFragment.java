@@ -35,8 +35,8 @@ public abstract class BaseFragment<V extends BaseView, P extends BasePresenter<V
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated( savedInstanceState );
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         initData();
     }
 
