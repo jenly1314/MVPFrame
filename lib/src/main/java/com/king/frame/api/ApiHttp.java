@@ -1,5 +1,9 @@
 package com.king.frame.api;
 
+import com.king.frame.util.SSLSocketFactoryUtils;
+
+import org.apache.http.conn.ssl.SSLSocketFactory;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -60,8 +64,11 @@ public class ApiHttp {
                     .readTimeout(mTimeout, TimeUnit.SECONDS)
                     .writeTimeout(mTimeout, TimeUnit.SECONDS)
                     .addInterceptor(new LogInterceptor())
+                    .sslSocketFactory(SSLSocketFactoryUtils.createSSLSocketFactory(),SSLSocketFactoryUtils.createTrustAllManager())
+                    .hostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER)
                     .build();
         }
+
         return mOkHttpClient;
     }
 

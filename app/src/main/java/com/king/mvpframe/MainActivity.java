@@ -28,8 +28,6 @@ import butterknife.OnClick;
 
 public class MainActivity extends QuickActivity<IIPAddrView, IPAddrPresenter> implements IIPAddrView {
 
-    @BindView(R.id.pb)
-    ProgressBar pb;
     @BindView(R.id.etIp)
     EditText etIp;
     @BindView(R.id.btnQuery)
@@ -114,20 +112,8 @@ public class MainActivity extends QuickActivity<IIPAddrView, IPAddrPresenter> im
     }
 
     @Override
-    public void showProgress() {
-        super.showProgress();
-        pb.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void onCompleted() {
-//        super.onCompleted();
-        pb.setVisibility(View.INVISIBLE);
-    }
-
-    @Override
     public void onError(Throwable e) {
-//        super.onError(e);
+        super.onError(e);
         tvAddr.setText("获取失败！");
     }
 
