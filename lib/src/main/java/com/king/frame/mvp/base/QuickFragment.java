@@ -94,6 +94,10 @@ public abstract class QuickFragment<V extends BaseView, P extends BasePresenter<
         return LayoutInflater.from(getContext()).inflate(id,root);
     }
 
+    protected View inflate(@LayoutRes int id,@Nullable ViewGroup root, boolean attachToRoot){
+        return LayoutInflater.from(getContext()).inflate(id,root,attachToRoot);
+    }
+
     //---------------------------------------
 
     protected void showDialogFragment(DialogFragment dialogFragment){
@@ -121,6 +125,14 @@ public abstract class QuickFragment<V extends BaseView, P extends BasePresenter<
         return mOnDialogCancelClick;
     }
 
+    protected Dialog getDialog(){
+        return this.mDialog;
+    }
+
+    protected Dialog getProgressDialog(){
+        return this.mProgressDialog;
+    }
+
     protected void dismissDialog(){
         dismissDialog(mDialog);
     }
@@ -142,17 +154,30 @@ public abstract class QuickFragment<V extends BaseView, P extends BasePresenter<
     }
 
     protected void showProgressDialog(){
-        showProgressDialog(R.layout.progress_dialog);
+        showProgressDialog(false);
+    }
+
+    protected void showProgressDialog(boolean isCancel){
+        showProgressDialog(R.layout.progress_dialog,isCancel);
     }
 
     protected void showProgressDialog(@LayoutRes int resId){
-        showProgressDialog(inflate(resId));
+        showProgressDialog(resId,false);
+    }
+
+    protected void showProgressDialog(@LayoutRes int resId,boolean isCancel){
+        showProgressDialog(inflate(resId),isCancel);
     }
 
     protected void showProgressDialog(View v){
+        showProgressDialog(v,false);
+    }
+
+    protected void showProgressDialog(View v,boolean isCancel){
         dismissProgressDialog();
         mProgressDialog =  BaseProgressDialog.newInstance(getContext());
         mProgressDialog.setContentView(v);
+        mProgressDialog.setCanceledOnTouchOutside(isCancel);
         mProgressDialog.show();
     }
 
@@ -160,8 +185,16 @@ public abstract class QuickFragment<V extends BaseView, P extends BasePresenter<
         showDialog(contentView,DEFAULT_WIDTH_RATIO);
     }
 
+    protected void showDialog(View contentView,boolean isCancel){
+        showDialog(getContext(),contentView,R.style.dialog,DEFAULT_WIDTH_RATIO,isCancel);
+    }
+
     protected void showDialog(View contentView,float widthRatio){
         showDialog(getContext(),contentView,widthRatio);
+    }
+
+    protected void showDialog(View contentView,float widthRatio,boolean isCancel){
+        showDialog(getContext(),contentView,R.style.dialog,widthRatio,isCancel);
     }
 
     protected void showDialog(Context context,View contentView,float widthRatio){
@@ -169,10 +202,14 @@ public abstract class QuickFragment<V extends BaseView, P extends BasePresenter<
     }
 
     protected void showDialog(Context context, View contentView, @StyleRes int resId, float widthRatio){
+        showDialog(context,contentView,resId,widthRatio,false);
+    }
+
+    protected void showDialog(Context context, View contentView, @StyleRes int resId, float widthRatio,boolean isCancel){
         dismissDialog();
         mDialog = new Dialog(context,resId);
         mDialog.setContentView(contentView);
-        mDialog.setCanceledOnTouchOutside(false);
+        mDialog.setCanceledOnTouchOutside(isCancel);
         setDialogWindow(mDialog,widthRatio);
         mDialog.show();
 

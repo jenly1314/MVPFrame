@@ -1,17 +1,15 @@
-package com.king.frame.mvp.activity;
+package com.king.frame.mvp.fragment;
 
 import android.support.annotation.NonNull;
 
-import com.king.frame.mvp.base.BaseActivity;
 import com.king.frame.mvp.base.BasePresenter;
 import com.king.frame.mvp.base.BaseView;
+import com.king.frame.mvp.base.QuickFragment;
 
 /**
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-
-public abstract class PureActivity extends BaseActivity<BaseView,BasePresenter<BaseView>> {
-
+public abstract class PureFragment extends QuickFragment<BaseView,BasePresenter<BaseView>> {
 
     @NonNull
     @Override

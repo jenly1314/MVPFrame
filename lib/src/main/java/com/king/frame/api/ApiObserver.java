@@ -62,7 +62,7 @@ public class ApiObserver<T> implements Observer<T> {
         return new ApiObserver<>( callback );
     }
 
-    public static <T> void subscribe(Observable<T> observable, SimpleCallback<T> callback){
+    public static <T> void subscribe(Observable<T> observable, ApiCallback<T> callback){
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getApiObserver(callback));
