@@ -1,11 +1,14 @@
 package com.king.mvpframe.mvp.presenter;
 
+import android.support.annotation.NonNull;
+
 import com.king.frame.api.SimpleCallback;
 import com.king.frame.mvp.base.BasePresenter;
 import com.king.mvpframe.api.Api;
 import com.king.mvpframe.bean.IPAddress;
 import com.king.mvpframe.mvp.view.IIPAddrView;
-import com.orhanobut.logger.Logger;
+
+import timber.log.Timber;
 
 /**
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
@@ -14,16 +17,20 @@ import com.orhanobut.logger.Logger;
 
 public class IPAddrPresenter extends BasePresenter<IIPAddrView>{
 
+    public void getIp(final String ip){
 
-
-    public void getIp(String ip){
-        Logger.d("query:" + ip);
-        getView().showProgress();
-        Api.getApiAddr(ip, new SimpleCallback<IPAddress>(getView()) {
+        ifViewAttached(new ViewAction<IIPAddrView>() {
             @Override
-            public void onNext(IPAddress ipAddress) {
-                getView().onGetIPAddr(ipAddress);
+            public void run(final @NonNull IIPAddrView view) {
+                view.showProgress();
+                Api.getApiAddr(ip, new SimpleCallback<IPAddress>(view) {
+                    @Override
+                    public void onNext(IPAddress ipAddress) {
+                        view.onGetIPAddr(ipAddress);
+                    }
+                });
             }
         });
+
     }
 }

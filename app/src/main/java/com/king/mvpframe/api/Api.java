@@ -4,10 +4,6 @@ import com.king.frame.api.ApiManager;
 import com.king.frame.api.ApiObserver;
 import com.king.frame.api.SimpleCallback;
 import com.king.mvpframe.bean.IPAddress;
-import com.king.mvpframe.mvp.view.IIPAddrView;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>

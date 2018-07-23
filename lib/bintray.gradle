@@ -1,0 +1,10 @@
+
+//添加
+publish {
+    userOrg = 'jenly'//bintray.com用户名
+    groupId = 'com.king.frame'//jcenter上的路径
+    artifactId = 'mvpframe'//项目名称
+    publishVersion = '1.1.0'//版本号
+    desc = 'MVPFrame for Android'//描述
+    website = 'https://github.com/jenly1314/MVPFrame'//网站
+}

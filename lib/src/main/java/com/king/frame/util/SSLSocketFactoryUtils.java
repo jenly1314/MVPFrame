@@ -3,7 +3,6 @@ package com.king.frame.util;
 import android.content.Context;
 import android.support.annotation.RawRes;
 
-import com.orhanobut.logger.Logger;
 
 import java.io.InputStream;
 import java.security.KeyManagementException;
@@ -20,6 +19,8 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
+
+import timber.log.Timber;
 
 /**
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
@@ -57,7 +58,7 @@ public class SSLSocketFactoryUtils {
                 }
             };
         } catch (Exception e) {
-            Logger.e(e,"Exception");
+            Timber.e(e,"Exception");
         }
         return tm;
     }
@@ -89,7 +90,7 @@ public class SSLSocketFactoryUtils {
                     try {
                         sslContext = SSLContext.getInstance("TLS");
                     } catch (NoSuchAlgorithmException e) {
-                        Logger.e(e,"NoSuchAlgorithmException");
+                        Timber.e(e,"NoSuchAlgorithmException");
                         return null;
                     }
                     //获得服务器端证书
@@ -99,7 +100,7 @@ public class SSLSocketFactoryUtils {
                     try {
                         sslContext.init(null,turstManager,new SecureRandom());
                     } catch (KeyManagementException e) {
-                        Logger.e(e,"KeyManagementException");
+                        Timber.e(e,"KeyManagementException");
                     }
 
                     //获得sslSocketFactory
@@ -143,7 +144,7 @@ public class SSLSocketFactoryUtils {
             return trustManagerFactory.getTrustManagers();
 
         } catch (Exception e) {
-            Logger.e(e,"Exception");
+            Timber.e(e,"Exception");
 
         }
 

@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -27,13 +28,20 @@ public abstract class BaseDialogFragment<V extends BaseView, P extends BasePrese
         // TODO: inflate a fragment view
         super.getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        mRootView = inflater.inflate(getRootViewId(),container,false);
+        int layoutId = getRootViewId();
+        if(!isContentView(layoutId)){
+            mRootView = inflater.inflate(layoutId,container,false);
+        }
         initUI();
         return mRootView;
     }
 
     protected View getRootView(){
         return mRootView;
+    }
+
+    protected void setRootView(View rootView){
+        this.mRootView = rootView;
     }
 
     public <T extends View> T findView(@IdRes int id){
@@ -67,4 +75,6 @@ public abstract class BaseDialogFragment<V extends BaseView, P extends BasePrese
     public abstract void initUI();
 
     public abstract void initData();
+
+    public abstract boolean isContentView(@LayoutRes int layoutId);
 }

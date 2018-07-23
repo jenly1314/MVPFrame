@@ -1,13 +1,14 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'
+apply from: 'bintray.gradle'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
 
@@ -27,40 +28,25 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    provided 'com.android.support:appcompat-v7:25.3.1'
-    testCompile 'junit:junit:4.12'
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    testImplementation 'junit:junit:4.12'
+    compileOnly 'com.android.support:support-v4:27.1.1'
+    compileOnly 'com.android.support:appcompat-v7:27.1.1'
 
     // Model-View-Intent
-    compile 'com.hannesdorfmann.mosby3:mvi:3.0.4'
+    api 'com.hannesdorfmann.mosby3:mvi:3.1.0'
     // Plain MVP
-    compile 'com.hannesdorfmann.mosby3:mvp:3.0.4'
+    api 'com.hannesdorfmann.mosby3:mvp:3.1.0'
     // MVP + ViewState support
-    compile 'com.hannesdorfmann.mosby3:viewstate:3.0.4'
+    api 'com.hannesdorfmann.mosby3:viewstate:3.1.0'
 
-    compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
-    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    api 'com.squareup.retrofit2:retrofit:2.4.0'
+    api 'com.squareup.retrofit2:converter-gson:2.4.0'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
 
-    compile 'com.squareup.okhttp3:okhttp:3.9.1'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    api 'io.reactivex.rxjava2:rxjava:2.1.16'
+    api 'io.reactivex.rxjava2:rxandroid:2.0.2'
 
-    compile 'io.reactivex.rxjava2:rxjava:2.1.1'
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-
-    compile 'com.orhanobut:logger:1.15'
-}
-
-
-//添加
-publish {
-    userOrg = 'jenly'//bintray.com用户名
-    groupId = 'com.king.frame'//jcenter上的路径
-    artifactId = 'mvpframe'//项目名称
-    publishVersion = '1.0.6'//版本号
-    desc = 'MVPFrame for Android'//描述
-    website = 'https://github.com/jenly1314/MVPFrame'//网站
+    api 'com.jakewharton.timber:timber:4.7.1'
 }

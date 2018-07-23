@@ -1,6 +1,5 @@
 package com.king.frame.api;
 
-import com.orhanobut.logger.Logger;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -8,6 +7,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import timber.log.Timber;
 
 /**
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
@@ -21,13 +21,20 @@ public class ApiObserver<T> implements Observer<T> {
 
     private String mTag = TAG;
 
+    private boolean isLog = true;
+
     public ApiObserver(ApiCallback<T> callback){
         this.mCallback = callback;
     }
 
     public ApiObserver(ApiCallback<T> callback,String tag){
+        this(callback,tag,true);
+    }
+
+    public ApiObserver(ApiCallback<T> callback,String tag,boolean isLog){
         this.mCallback = callback;
         this.mTag = tag;
+        this.isLog = isLog;
     }
 
     @Override
@@ -37,7 +44,9 @@ public class ApiObserver<T> implements Observer<T> {
 
     @Override
     public void onError(Throwable e) {
-        Logger.t(mTag).e(e,"onError");
+        if(isLog){
+            Timber.tag(mTag).e(e,"onError");
+        }
         if(mCallback != null){
             mCallback.onError( e );
         }
@@ -45,7 +54,9 @@ public class ApiObserver<T> implements Observer<T> {
 
     @Override
     public void onNext(T t) {
-        Logger.t(mTag).d("Response:" + t);
+        if(isLog) {
+            Timber.tag(mTag).d("Response:" + t);
+        }
         if(mCallback != null){
             mCallback.onNext( t );
         }

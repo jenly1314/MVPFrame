@@ -5,16 +5,13 @@ import android.support.annotation.NonNull;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.king.frame.mvp.base.BaseActivity;
 import com.king.frame.mvp.base.QuickActivity;
 import com.king.mvpframe.bean.IPAddress;
 import com.king.mvpframe.mvp.presenter.IPAddrPresenter;

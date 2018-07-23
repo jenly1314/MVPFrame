@@ -2,6 +2,7 @@ package com.king.frame.mvp.base;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
@@ -9,6 +10,7 @@ import android.support.annotation.StyleRes;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.util.DisplayMetrics;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -169,10 +171,24 @@ public abstract class QuickDialogFragment<V extends BaseView, P extends BasePres
     }
 
     protected void showDialog(Context context, View contentView, @StyleRes int resId, float widthRatio){
+        showDialog(context,contentView,resId,widthRatio,true);
+    }
+
+    protected void showDialog(Context context, View contentView, @StyleRes int resId, float widthRatio,final boolean isCancel){
         dismissDialog();
         mDialog = new Dialog(context,resId);
         mDialog.setContentView(contentView);
         mDialog.setCanceledOnTouchOutside(false);
+        mDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                if(keyCode == KeyEvent.KEYCODE_BACK && isCancel){
+                    dismissDialog();
+                }
+                return true;
+
+            }
+        });
         setDialogWindow(mDialog,widthRatio);
         mDialog.show();
 
@@ -200,6 +216,11 @@ public abstract class QuickDialogFragment<V extends BaseView, P extends BasePres
     }
 
     //---------------------------------------
+
+    @Override
+    public boolean isContentView(int layoutId) {
+        return false;
+    }
 
     @Override
     public void showProgress(){

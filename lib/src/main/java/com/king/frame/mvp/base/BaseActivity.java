@@ -21,7 +21,10 @@ public abstract class BaseActivity<V extends BaseView, P extends BasePresenter<V
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate( savedInstanceState);
-        setContentView( getRootViewId() );
+        int layoutId = getRootViewId();
+        if(!isContentView(layoutId)){
+            setContentView(layoutId);
+        }
         initUI();
         initData();
 
@@ -48,5 +51,7 @@ public abstract class BaseActivity<V extends BaseView, P extends BasePresenter<V
     public abstract void initUI();
 
     public abstract void initData();
+
+    public abstract boolean isContentView(@LayoutRes int layoutId);
 
 }

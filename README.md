@@ -1,5 +1,5 @@
 # MVPFrame
-[![Download](https://img.shields.io/badge/download-App-blue.svg)](https://raw.githubusercontent.com/jenly1314/MVPFrame/master/app/app-release.apk)
+[![Download](https://img.shields.io/badge/download-App-blue.svg)](https://raw.githubusercontent.com/jenly1314/MVPFrame/master/app/release/app-release.apk)
 [![](https://jitpack.io/v/jenly1314/MVPFrame.svg)](https://jitpack.io/#jenly1314/MVPFrame)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/mit-license.php)
 [![Blog](https://img.shields.io/badge/blog-Jenly-9933CC.svg)](http://blog.csdn.net/jenly121)
@@ -16,17 +16,17 @@ MVPFrame for Android 是一个集合了 Retrofit2 + RXJava2 + OkHttp3 + Mosby3 �
 <dependency>
   <groupId>com.king.frame</groupId>
   <artifactId>mvpframe</artifactId>
-  <version>1.0.6</version>
+  <version>1.1.0</version>
   <type>pom</type>
 </dependency>
 ```
 ### Gradle:
 ```gradle
-compile 'com.king.frame:mvpframe:1.0.6'
+compile 'com.king.frame:mvpframe:1.1.0'
 ```
 ### Lvy:
 ```lvy
-<dependency org='com.king.frame' name='mvpframe' rev='1.0.6'>
+<dependency org='com.king.frame' name='mvpframe' rev='1.1.0'>
   <artifact name='$AID' ext='pom'></artifact>
 </dependency>
 ```
@@ -42,24 +42,24 @@ allprojects {
 
 ## 引入的库：
 ```gradle
+    compileOnly 'com.android.support:support-v4:27.1.1'
+    compileOnly 'com.android.support:appcompat-v7:27.1.1'
+
     // Model-View-Intent
-    compile 'com.hannesdorfmann.mosby3:mvi:3.0.4'
+    api 'com.hannesdorfmann.mosby3:mvi:3.1.0'
     // Plain MVP
-    compile 'com.hannesdorfmann.mosby3:mvp:3.0.4'
+    api 'com.hannesdorfmann.mosby3:mvp:3.1.0'
     // MVP + ViewState support
-    compile 'com.hannesdorfmann.mosby3:viewstate:3.0.4'
+    api 'com.hannesdorfmann.mosby3:viewstate:3.1.0'
 
-    compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
-    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    api 'com.squareup.retrofit2:retrofit:2.4.0'
+    api 'com.squareup.retrofit2:converter-gson:2.4.0'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
 
-    compile 'com.squareup.okhttp3:okhttp:3.9.1'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    api 'io.reactivex.rxjava2:rxjava:2.1.16'
+    api 'io.reactivex.rxjava2:rxandroid:2.0.2'
 
-    compile 'io.reactivex.rxjava2:rxjava:2.1.1'
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-
-    compile 'com.orhanobut:logger:1.15'
+    api 'com.jakewharton.timber:timber:4.7.1'
 ```
 
 ## 示例
