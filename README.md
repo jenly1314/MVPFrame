@@ -67,13 +67,22 @@ allprojects {
 
 ## 示例
 
-核心代码（在你项目的Application中的onCreate方法里面初始化）
+集成步骤代码示例 （示例出自于[app](app)中）
+
+Step.1 启用DataBinding，在你项目中的build.gradle的android{}中添加配置：
+```gradle
+dataBinding {
+    enabled true
+}
+```
+
+Step.2 通过ApiManager初始化（在你项目的Application中的onCreate方法里面初始化）
 ```Java
-//初始化：第一个参数是基本的Url地址，第二个参数是超时时间（单位为秒，可不填，默认为20s）
+//初始化：第一个参数是基本的Url地址，第二个参数是超时时间（单位为秒，可不填，默认为15s）
 ApiManager.init(String baseUrl,int timeout);
 ```
 
-代码示例 （示例出自于[app](app)中的Api.java）
+Step.3 定义一个类似于[app](app)中的Api来管理接口
 ```Java
     public class Api {
 
