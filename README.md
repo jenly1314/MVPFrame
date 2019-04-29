@@ -7,7 +7,7 @@
 [![Blog](https://img.shields.io/badge/blog-Jenly-9933CC.svg)](http://blog.csdn.net/jenly121)
 [![QQGroup](https://img.shields.io/badge/QQGroup-20867961-blue.svg)](http://shang.qq.com/wpa/qunwpa?idkey=8fcc6a2f88552ea44b1411582c94fd124f7bb3ec227e2a400dbbfaad3dc2f5ad)
 
-MVPFrame for Android 是一个集合了 Retrofit2 + RXJava2 + OkHttp3 + Mosby3 二次封装的MVP架构基类库，为敏捷开发而生。
+MVPFrame for Android 是一个集合了 Retrofit2 + RXJava2 + OkHttp3 + Mosby3 二次封装的MVP快速开发框架，为敏捷开发而生。
 
 ## 架构
 ![Image](image/mvp_architecture.jpg)
@@ -126,7 +126,7 @@ Step.3 定义一个类似于[app](app)中的Api来管理接口
 *  RxJava更新至v2.2.8
 *  RxAndroid更新至v2.1.1
 
-#### v1.1.0：2018-5-17
+#### v1.1.0：2018-7-23
 *  Retrofit更新至v2.4.0
 *  RxJava更新至v2.1.16
 *  RxAndroid更新至v2.0.2
