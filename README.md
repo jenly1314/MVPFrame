@@ -10,7 +10,7 @@
 MVPFrame for Android 是一个集合了 Retrofit2 + RXJava2 + OkHttp3 + Mosby3 二次封装的MVP架构基类库，为敏捷开发而生。
 
 ## 架构
-![Image](image/mvvm_architecture.jpg)
+![Image](image/mvp_architecture.jpg)
 
 ## 引入
 
