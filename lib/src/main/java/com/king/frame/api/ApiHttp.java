@@ -1,9 +1,17 @@
 package com.king.frame.api;
 
+import android.annotation.SuppressLint;
+import android.support.annotation.NonNull;
+import android.support.v4.util.LruCache;
+import android.support.v4.util.Preconditions;
+
 import com.king.frame.util.SSLSocketFactoryUtils;
 
 import org.apache.http.conn.ssl.SSLSocketFactory;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.WeakHashMap;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -20,7 +28,7 @@ public class ApiHttp {
     /**
      *  默认超时时间 单位/秒
      */
-    public static final int DEFAULT_TIME_OUT = 20;
+    public static final int DEFAULT_TIME_OUT = 15;
 
     private int mTimeout = DEFAULT_TIME_OUT;
 
@@ -29,6 +37,8 @@ public class ApiHttp {
     private OkHttpClient mOkHttpClient;
 
     private Retrofit mRetrofit;
+
+    private Map<String,Object> mRetrofitServiceCache;
 
 
     public ApiHttp(String baseUrl){
@@ -79,4 +89,25 @@ public class ApiHttp {
     public void setRetrofit(Retrofit retrofit) {
         this.mRetrofit = retrofit;
     }
+
+    public <T> T getRetrofitService(@NonNull Class<T> service) {
+        if(mRetrofitServiceCache == null){
+            mRetrofitServiceCache = new HashMap<>();
+        }
+
+        T retrofitService = (T)mRetrofitServiceCache.get(service.getCanonicalName());
+        if(retrofitService == null){
+            synchronized (mRetrofitServiceCache) {
+                if(retrofitService == null){
+                    retrofitService = getRetrofit().create(service);
+                    //缓存
+                    mRetrofitServiceCache.put(service.getCanonicalName(),retrofitService);
+                }
+
+            }
+        }
+
+        return retrofitService;
+    }
+
 }

@@ -58,7 +58,7 @@ public abstract class BaseDialogFragment<V extends BaseView, P extends BasePrese
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated( savedInstanceState );
-        super.getDialog().getWindow().getAttributes().windowAnimations = R.style.dialog_animation;
+        super.getDialog().getWindow().getAttributes().windowAnimations = R.style.mvpframe_dialog_animation;
 
     }
 

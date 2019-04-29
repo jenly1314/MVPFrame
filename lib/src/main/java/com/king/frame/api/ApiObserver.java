@@ -15,27 +15,12 @@ import timber.log.Timber;
 
 public class ApiObserver<T> implements Observer<T> {
 
-    private static final String TAG  = "Jenly";
-
     private ApiCallback<T> mCallback;
-
-    private String mTag = TAG;
-
-    private boolean isLog = true;
 
     public ApiObserver(ApiCallback<T> callback){
         this.mCallback = callback;
     }
 
-    public ApiObserver(ApiCallback<T> callback,String tag){
-        this(callback,tag,true);
-    }
-
-    public ApiObserver(ApiCallback<T> callback,String tag,boolean isLog){
-        this.mCallback = callback;
-        this.mTag = tag;
-        this.isLog = isLog;
-    }
 
     @Override
     public void onSubscribe(@NonNull Disposable d) {
@@ -44,9 +29,7 @@ public class ApiObserver<T> implements Observer<T> {
 
     @Override
     public void onError(Throwable e) {
-        if(isLog){
-            Timber.tag(mTag).e(e,"onError");
-        }
+        Timber.e(e,"onError");
         if(mCallback != null){
             mCallback.onError( e );
         }
@@ -54,9 +37,7 @@ public class ApiObserver<T> implements Observer<T> {
 
     @Override
     public void onNext(T t) {
-        if(isLog) {
-            Timber.tag(mTag).d("Response:" + t);
-        }
+        Timber.d("Response:" + t);
         if(mCallback != null){
             mCallback.onNext( t );
         }

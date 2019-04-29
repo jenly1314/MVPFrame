@@ -1,12 +1,12 @@
 package com.king.frame.api;
 
+import android.support.annotation.NonNull;
+
 /**
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 
 public class ApiManager {
-
-    private static final String TAG = "Jenly";
 
     private ApiHttp mApiHttp;
 
@@ -47,9 +47,8 @@ public class ApiManager {
         this.mApiHttp = apiHttp;
     }
 
-    public <T> T getApiService(Class<T> service){
-        return mApiHttp.getRetrofit().create(service);
+    public <T> T getApiService(@NonNull Class<T> service){
+        return mApiHttp.getRetrofitService(service);
     }
-
 
 }

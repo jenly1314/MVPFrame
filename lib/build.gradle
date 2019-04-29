@@ -1,16 +1,14 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
 apply from: 'bintray.gradle'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
-
+    compileSdkVersion build_versions.compileSdk
+    buildToolsVersion build_versions.buildTools
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion build_versions.minSdk
+        targetSdkVersion build_versions.targetSdk
+        versionCode app_version.versionCode
+        versionName app_version.versionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -22,31 +20,36 @@ android {
         }
     }
 
+    dataBinding {
+        enabled true
+    }
+
     lintOptions {
         abortOnError false
+        warning 'InvalidPackage'
     }
 }
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    testImplementation 'junit:junit:4.12'
-    compileOnly 'com.android.support:support-v4:27.1.1'
-    compileOnly 'com.android.support:appcompat-v7:27.1.1'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.runner
+    androidTestImplementation deps.test.espresso
 
-    // Model-View-Intent
-    api 'com.hannesdorfmann.mosby3:mvi:3.1.0'
-    // Plain MVP
-    api 'com.hannesdorfmann.mosby3:mvp:3.1.0'
-    // MVP + ViewState support
-    api 'com.hannesdorfmann.mosby3:viewstate:3.1.0'
+    compileOnly deps.support.appcompat
 
-    api 'com.squareup.retrofit2:retrofit:2.4.0'
-    api 'com.squareup.retrofit2:converter-gson:2.4.0'
-    api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    api deps.mosby.mvp
+    api deps.mosby.mvi
+    api deps.mosby.viewstate
 
-    api 'io.reactivex.rxjava2:rxjava:2.1.16'
-    api 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    api deps.retrofit.retrofit
+    api deps.retrofit.converter_gson
+    api deps.retrofit.adapter_rxjava
 
-    api 'com.jakewharton.timber:timber:4.7.1'
+    api deps.rxjava
+    api deps.rxandroid
+
+    api deps.timber
+
+
 }

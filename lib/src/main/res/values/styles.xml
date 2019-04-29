@@ -3,30 +3,30 @@
 
 
     <!-- dialog animation -->
-    <style name="dialog_animation" parent="android:style/Animation.Dialog">
+    <style name="mvpframe_dialog_animation" parent="android:style/Animation.Dialog">
         <item name="android:windowEnterAnimation">@anim/dialog_in</item>
         <item name="android:windowExitAnimation">@anim/dialog_out</item>
     </style>
 
     <!-- dialog style -->
-    <style name="dialog" parent="android:style/Theme.Dialog">
+    <style name="mvpframe_dialog" parent="android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:backgroundDimEnabled">true</item>
-        <item name="android:windowAnimationStyle">@style/dialog_animation</item>
+        <item name="android:windowAnimationStyle">@style/mvpframe_dialog_animation</item>
     </style>
 
-    <style name="progress_dialog" parent="android:style/Theme.Dialog">
+    <style name="mvpframe_progress_dialog" parent="android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:backgroundDimEnabled">false</item>
-        <item name="android:windowAnimationStyle">@style/dialog_animation</item>
+        <item name="android:windowAnimationStyle">@style/mvpframe_dialog_animation</item>
         <item name="android:progressBarStyle">@android:style/Widget.ProgressBar.Horizontal</item>
     </style>
 

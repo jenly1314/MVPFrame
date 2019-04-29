@@ -169,7 +169,7 @@ public abstract class QuickActivity<V extends BaseView, P extends BasePresenter<
     }
 
     protected void showDialog(View contentView,boolean isCancel){
-        showDialog(getContext(),contentView,R.style.dialog,DEFAULT_WIDTH_RATIO,isCancel);
+        showDialog(getContext(),contentView,R.style.mvpframe_dialog,DEFAULT_WIDTH_RATIO,isCancel);
     }
 
     protected void showDialog(View contentView,float widthRatio){
@@ -177,11 +177,11 @@ public abstract class QuickActivity<V extends BaseView, P extends BasePresenter<
     }
 
     protected void showDialog(View contentView,float widthRatio,boolean isCancel){
-        showDialog(getContext(),contentView,R.style.dialog,widthRatio,isCancel);
+        showDialog(getContext(),contentView,R.style.mvpframe_dialog,widthRatio,isCancel);
     }
 
     protected void showDialog(Context context,View contentView,float widthRatio){
-        showDialog(context,contentView, R.style.dialog,widthRatio);
+        showDialog(context,contentView, R.style.mvpframe_dialog,widthRatio);
     }
 
     protected void showDialog(Context context, View contentView, @StyleRes int resId, float widthRatio){

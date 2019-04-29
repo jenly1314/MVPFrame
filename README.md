@@ -9,8 +9,8 @@
 
 MVPFrame for Android 是一个集合了 Retrofit2 + RXJava2 + OkHttp3 + Mosby3 二次封装的MVP架构基类库，为敏捷开发而生。
 
-## Gif 展示
-![Image](GIF.gif) 
+## 架构
+![Image](image/mvvm_architecture.jpg)
 
 ## 引入
 
@@ -19,17 +19,17 @@ MVPFrame for Android 是一个集合了 Retrofit2 + RXJava2 + OkHttp3 + Mosby3 �
 <dependency>
   <groupId>com.king.frame</groupId>
   <artifactId>mvpframe</artifactId>
-  <version>1.1.0</version>
+  <version>1.1.1</version>
   <type>pom</type>
 </dependency>
 ```
 ### Gradle:
 ```gradle
-implementation 'com.king.frame:mvpframe:1.1.0'
+implementation 'com.king.frame:mvpframe:1.1.1'
 ```
 ### Lvy:
 ```lvy
-<dependency org='com.king.frame' name='mvpframe' rev='1.1.0'>
+<dependency org='com.king.frame' name='mvpframe' rev='1.1.1'>
   <artifact name='$AID' ext='pom'></artifact>
 </dependency>
 ```
@@ -45,22 +45,22 @@ allprojects {
 
 ## 引入的库：
 ```gradle
-    compileOnly 'com.android.support:support-v4:27.1.1'
-    compileOnly 'com.android.support:appcompat-v7:27.1.1'
+    compileOnly 'com.android.support:support-v4:28.0.0'
+    compileOnly 'com.android.support:appcompat-v7:28.0.0'
 
     // Model-View-Intent
-    api 'com.hannesdorfmann.mosby3:mvi:3.1.0'
+    api 'com.hannesdorfmann.mosby3:mvi:3.1.1'
     // Plain MVP
-    api 'com.hannesdorfmann.mosby3:mvp:3.1.0'
+    api 'com.hannesdorfmann.mosby3:mvp:3.1.1'
     // MVP + ViewState support
-    api 'com.hannesdorfmann.mosby3:viewstate:3.1.0'
+    api 'com.hannesdorfmann.mosby3:viewstate:3.1.1'
 
-    api 'com.squareup.retrofit2:retrofit:2.4.0'
-    api 'com.squareup.retrofit2:converter-gson:2.4.0'
-    api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    api 'com.squareup.retrofit2:retrofit:2.5.0'
+    api 'com.squareup.retrofit2:converter-gson:2.5.0'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
 
-    api 'io.reactivex.rxjava2:rxjava:2.1.16'
-    api 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    api 'io.reactivex.rxjava2:rxjava:2.2.8'
+    api 'io.reactivex.rxjava2:rxandroid:2.1.1'
 
     api 'com.jakewharton.timber:timber:4.7.1'
 ```
@@ -75,25 +75,73 @@ ApiManager.init(String baseUrl,int timeout);
 
 代码示例 （示例出自于[app](app)中的Api.java）
 ```Java
-public class Api {
+    public class Api {
 
-    private Api(){
-        throw new AssertionError();
-    }
+        private ApiService mApiService;
 
-    private static ApiService getApiService(){
-        if(apiService == null){
-            apiService = ApiManager.getInstance().getApiService(ApiService.class);
+        private static Api sInstance;
+
+        public static Api getInstance(){
+            if(sInstance == null){
+                synchronized (Api.class){
+                    if(sInstance == null){
+                        sInstance = new Api();
+                    }
+                }
+            }
+            return sInstance;
         }
-        return apiService;
+
+        private Api(){
+            mApiService = ApiManager.getInstance().getApiService(ApiService.class);
+        }
+
+        /**
+         * 获取推荐诗词
+         * @param callback
+         */
+        public void getRecommendPoetry(SimpleCallback<Result<PoetryInfo>> callback){
+            ApiObserver.subscribe(mApiService.getRecommendPoetry(),callback);
+        }
+
     }
 
-    public static void getApiAddr(String ip, SimpleCallback<IPAddress> callback){
-        ApiObserver.subscribe(getApiService().getIPAddr(ip),callback);
-    }
-}
 ```
 更多使用详情，请查看[app](app)中的源码使用示例
+
+## 版本记录
+
+#### v1.1.1：2019-4-29
+*  新增DataBinding支持
+*  Retrofit更新至v2.5.0
+*  RxJava更新至v2.2.8
+*  RxAndroid更新至v2.1.1
+
+#### v1.1.0：2018-5-17
+*  Retrofit更新至v2.4.0
+*  RxJava更新至v2.1.16
+*  RxAndroid更新至v2.0.2
+
+#### v1.0.6：2018-5-17
+*  暴露Dialog更多参数，让配置更加灵活
+
+#### v1.0.5：2018-1-29
+*  新增默认信任SSL证书，支持https
+
+#### v1.0.4：2018-1-18
+*  优化BaseProgressDialog
+
+#### v1.0.3：2017-12-4
+*  新增请求相应Log日志信息方便调试。
+
+#### v1.0.2：2017-9-21
+*  新增QuickActivity、QuickFragment。
+
+#### v1.0.1：2017-8-18
+*  将retrofit中的adapter修改为adapter-rxjava2 v1.0
+
+#### v1.0.0：2017-7-5
+*  MVPFrame初始版本
 
 ## 赞赏
 如果您喜欢MVPFrame，或感觉MVPFrame帮助到了您，可以点右上角“Star”支持一下，您的支持就是我的动力，谢谢 :smiley:<p>

@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.king.frame.api.ApiManager;
 
+import timber.log.Timber;
+
 /**
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
@@ -18,5 +20,6 @@ public class App extends Application {
 
     private void init(){
         ApiManager.init(Constants.BASE_URL);
+        Timber.plant(new Timber.DebugTree());
     }
 }

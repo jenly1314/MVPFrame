@@ -23,7 +23,7 @@ public class BaseProgressDialog extends Dialog {
 
 
     public BaseProgressDialog(Context context) {
-        this(context, R.style.progress_dialog);
+        this(context, R.style.mvpframe_progress_dialog);
     }
 
     public BaseProgressDialog(Context context, int themeResId) {

@@ -5,12 +5,13 @@ import android.support.annotation.NonNull;
 import com.king.frame.mvp.base.BaseActivity;
 import com.king.frame.mvp.base.BasePresenter;
 import com.king.frame.mvp.base.BaseView;
+import com.king.frame.mvp.base.QuickActivity;
 
 /**
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 
-public abstract class PureActivity extends BaseActivity<BaseView,BasePresenter<BaseView>> {
+public abstract class PureActivity extends QuickActivity<BaseView,BasePresenter<BaseView>> {
 
 
     @NonNull

@@ -3,7 +3,8 @@ package com.king.mvpframe.api;
 import com.king.frame.api.ApiManager;
 import com.king.frame.api.ApiObserver;
 import com.king.frame.api.SimpleCallback;
-import com.king.mvpframe.bean.IPAddress;
+import com.king.mvpframe.bean.PoetryInfo;
+import com.king.mvpframe.bean.Result;
 
 /**
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
@@ -11,20 +12,31 @@ import com.king.mvpframe.bean.IPAddress;
 
 public class Api {
 
-    private static ApiService apiService;
+    private ApiService mApiService;
+
+    private static Api sInstance;
+
+    public static Api getInstance(){
+        if(sInstance == null){
+            synchronized (Api.class){
+                if(sInstance == null){
+                    sInstance = new Api();
+                }
+            }
+        }
+        return sInstance;
+    }
 
     private Api(){
-        throw new AssertionError();
+        mApiService = ApiManager.getInstance().getApiService(ApiService.class);
     }
 
-    private static ApiService getApiService(){
-        if(apiService == null){
-            apiService = ApiManager.getInstance().getApiService(ApiService.class);
-        }
-        return apiService;
+    /**
+     * 获取推荐诗词
+     * @param callback
+     */
+    public void getRecommendPoetry(SimpleCallback<Result<PoetryInfo>> callback){
+        ApiObserver.subscribe(mApiService.getRecommendPoetry(),callback);
     }
 
-    public static void getApiAddr(String ip, SimpleCallback<IPAddress> callback){
-        ApiObserver.subscribe(getApiService().getIPAddr(ip),callback);
-    }
 }

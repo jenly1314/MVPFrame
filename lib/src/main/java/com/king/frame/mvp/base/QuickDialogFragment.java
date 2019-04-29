@@ -167,7 +167,7 @@ public abstract class QuickDialogFragment<V extends BaseView, P extends BasePres
     }
 
     protected void showDialog(Context context,View contentView,float widthRatio){
-        showDialog(context,contentView, R.style.dialog,widthRatio);
+        showDialog(context,contentView, R.style.mvpframe_dialog,widthRatio);
     }
 
     protected void showDialog(Context context, View contentView, @StyleRes int resId, float widthRatio){

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MVPFrame</string>
+
+    <string name="author_">作者：</string>
 </resources>
