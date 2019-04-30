@@ -45,7 +45,6 @@ allprojects {
 
 ## 引入的库：
 ```gradle
-    compileOnly 'com.android.support:support-v4:28.0.0'
     compileOnly 'com.android.support:appcompat-v7:28.0.0'
 
     // Model-View-Intent
