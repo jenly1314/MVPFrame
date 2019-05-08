@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-public abstract class BindingFragment<V extends BaseView, P extends BasePresenter<V>,VDB extends ViewDataBinding> extends BaseFragment<V,P> {
+public abstract class BindingFragment<V extends BaseView, P extends BasePresenter<V>,VDB extends ViewDataBinding> extends QuickFragment<V,P> {
 
     protected VDB mBinding;
 
