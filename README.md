@@ -1,4 +1,7 @@
 # MVPFrame
+
+![Image](app/src/main/ic_launcher-web.png)
+
 [![Download](https://img.shields.io/badge/download-App-blue.svg)](https://raw.githubusercontent.com/jenly1314/MVPFrame/master/app/release/app-release.apk)
 [![Jitpack](https://jitpack.io/v/jenly1314/MVPFrame.svg)](https://jitpack.io/#jenly1314/MVPFrame)
 [![CI](https://travis-ci.org/jenly1314/MVPFrame.svg?branch=master)](https://travis-ci.org/jenly1314/MVPFrame)
