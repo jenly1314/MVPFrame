@@ -2,7 +2,6 @@ package com.king.frame.mvp.activity;
 
 import android.support.annotation.NonNull;
 
-import com.king.frame.mvp.base.BaseActivity;
 import com.king.frame.mvp.base.BasePresenter;
 import com.king.frame.mvp.base.BaseView;
 import com.king.frame.mvp.base.QuickActivity;

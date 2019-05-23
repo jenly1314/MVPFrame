@@ -1,10 +1,6 @@
 package com.king.frame.mvp.fragment;
 
 import android.databinding.ViewDataBinding;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.king.frame.mvp.base.BasePresenter;
 import com.king.frame.mvp.base.BaseView;
