@@ -22,17 +22,17 @@ MVPFrame for Android 是一个集合了 Retrofit2 + RXJava2 + OkHttp3 + Mosby3 �
 <dependency>
   <groupId>com.king.frame</groupId>
   <artifactId>mvpframe</artifactId>
-  <version>1.1.1</version>
+  <version>1.1.2</version>
   <type>pom</type>
 </dependency>
 ```
 ### Gradle:
 ```gradle
-implementation 'com.king.frame:mvpframe:1.1.1'
+implementation 'com.king.frame:mvpframe:1.1.2'
 ```
 ### Lvy:
 ```lvy
-<dependency org='com.king.frame' name='mvpframe' rev='1.1.1'>
+<dependency org='com.king.frame' name='mvpframe' rev='1.1.2'>
   <artifact name='$AID' ext='pom'></artifact>
 </dependency>
 ```
@@ -121,6 +121,9 @@ Step.3 定义一个类似于[app](app)中的Api来管理接口
 更多使用详情，请查看[app](app)中的源码使用示例
 
 ## 版本记录
+
+#### v1.1.2：2019-5-27
+*  完善BindingFragment相关联子类
 
 #### v1.1.1：2019-4-29
 *  新增DataBinding支持

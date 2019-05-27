@@ -21,17 +21,24 @@ public abstract class ContentActivity extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate( savedInstanceState);
-        setContentView( R.layout.activity_content );
+        setContentView( R.layout.content_activity);
 
         switchFragment(getIntent());
     }
 
+    /**
+     * use {@link #findViewById(int)}
+     * @param id
+     * @param <T>
+     * @return
+     */
+    @Deprecated
     public <T extends View> T findView(@IdRes int id){
         return (T)findViewById(id);
     }
 
-    protected void replaceFragment(Fragment fragmnet){
-        replaceFragment(R.id.fragmentContent,fragmnet);
+    protected void replaceFragment(Fragment fragment){
+        replaceFragment(R.id.fragmentContent,fragment);
     }
 
     protected void replaceFragment(@IdRes int id, Fragment fragment) {

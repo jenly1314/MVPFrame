@@ -6,6 +6,7 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
@@ -36,10 +37,10 @@ public class ApiObserver<T> implements Observer<T> {
     }
 
     @Override
-    public void onNext(T t) {
-        Timber.d("Response:" + t);
+    public void onNext(T result) {
+        Timber.d("Response:" + result);
         if(mCallback != null){
-            mCallback.onNext( t );
+            mCallback.onNext( result );
         }
     }
 
@@ -50,10 +51,22 @@ public class ApiObserver<T> implements Observer<T> {
         }
     }
 
+    /**
+     *
+     * @param callback
+     * @param <T>
+     * @return {@link ApiObserver}
+     */
     public static <T> ApiObserver<T> getApiObserver(ApiCallback<T> callback){
         return new ApiObserver<>( callback );
     }
 
+    /**
+     * 订阅 {@link Observable#subscribe(Consumer)}
+     * @param observable
+     * @param callback
+     * @param <T>
+     */
     public static <T> void subscribe(Observable<T> observable, ApiCallback<T> callback){
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

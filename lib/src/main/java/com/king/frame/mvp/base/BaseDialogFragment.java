@@ -15,6 +15,7 @@ import android.view.Window;
 import com.king.frame.R;
 
 /**
+ * MVPFrame的DialogFragment基类
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 
@@ -44,7 +45,18 @@ public abstract class BaseDialogFragment<V extends BaseView, P extends BasePrese
         this.mRootView = rootView;
     }
 
+    /**
+     * use {@link #findViewById(int)}
+     * @param id
+     * @param <T>
+     * @return
+     */
+    @Deprecated
     public <T extends View> T findView(@IdRes int id){
+        return (T)mRootView.findViewById(id);
+    }
+
+    public <T extends View> T findViewById(@IdRes int id){
         return (T)mRootView.findViewById(id);
     }
 
