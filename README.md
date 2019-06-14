@@ -118,7 +118,7 @@ Step.3 定义一个类似于[app](app)中的Api来管理接口
     }
 
 ```
-更多使用详情，请查看[app](app)中的源码使用示例
+更多使用详情，请查看[app](app)中的源码使用示例或直接查看[API帮助文档](https://jenly1314.github.io/projects/MVPFrame/doc/)
 
 ## 版本记录
 
