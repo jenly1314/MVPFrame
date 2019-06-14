@@ -12,7 +12,6 @@ import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 import com.king.frame.R;
 
 /**
- * MVPFrame的Fragment基类
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 
@@ -39,21 +38,9 @@ public abstract class BaseFragment<V extends BaseView, P extends BasePresenter<V
         this.mRootView = rootView;
     }
 
-    /**
-     * use {@link #findViewById(int)}
-     * @param id
-     * @param <T>
-     * @return
-     */
-    @Deprecated
     public <T extends View> T findView(@IdRes int id){
         return (T)mRootView.findViewById(id);
     }
-
-    public <T extends View> T findViewById(@IdRes int id){
-        return (T)mRootView.findViewById(id);
-    }
-
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

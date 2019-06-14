@@ -12,7 +12,6 @@ import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 import com.king.frame.R;
 
 /**
- * MVPFrame的Activity基类
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 
@@ -31,13 +30,6 @@ public abstract class BaseActivity<V extends BaseView, P extends BasePresenter<V
 
     }
 
-    /**
-     * use {@link #findViewById(int)}
-     * @param id
-     * @param <T>
-     * @return
-     */
-    @Deprecated
     public <T extends View> T findView(@IdRes int id){
         return (T)findViewById(id);
     }
@@ -46,8 +38,8 @@ public abstract class BaseActivity<V extends BaseView, P extends BasePresenter<V
         return this;
     }
 
-    public void replaceFragment(Fragment fragment){
-        replaceFragment( R.id.fragmentContent,fragment);
+    public void replaceFragment(Fragment fragmnet){
+        replaceFragment( R.id.fragmentContent,fragmnet);
     }
 
     public void replaceFragment(@IdRes int id, Fragment fragment) {

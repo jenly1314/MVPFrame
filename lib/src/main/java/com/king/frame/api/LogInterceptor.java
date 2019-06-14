@@ -12,7 +12,6 @@ import okio.Buffer;
 import timber.log.Timber;
 
 /**
- * Log拦截器:通过拦截器打印网络请求相应相关日志
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 

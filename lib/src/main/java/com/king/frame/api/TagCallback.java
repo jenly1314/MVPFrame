@@ -5,12 +5,11 @@ import com.king.frame.mvp.base.TagView;
 import io.reactivex.disposables.Disposable;
 
 /**
- * 带Tag的API回调接口，主要用于：在保证统一处理错误的同时，又能通过Tag区分特殊接口，单独处理。
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public abstract class TagCallback<T,TAG> implements ApiCallback<T> {
 
-    private TAG mTag;
+    private TAG tag;
 
     private TagView mView;
 
@@ -20,7 +19,7 @@ public abstract class TagCallback<T,TAG> implements ApiCallback<T> {
 
     public TagCallback(TagView iview,TAG tag){
         this.mView = iview;
-        this.mTag = tag;
+        this.tag = tag;
     }
 
     @Override
@@ -30,8 +29,8 @@ public abstract class TagCallback<T,TAG> implements ApiCallback<T> {
 
     @Override
     public void onError(Throwable e) {
-        if(mTag!=null){
-            mView.onError(e,mTag);
+        if(tag!=null){
+            mView.onError(e,tag);
         }else{
             mView.onError(e);
         }
@@ -40,15 +39,11 @@ public abstract class TagCallback<T,TAG> implements ApiCallback<T> {
 
     @Override
     public void onCompleted() {
-        if(mTag!=null){
-            mView.onCompleted(mTag);
+        if(tag!=null){
+            mView.onCompleted(tag);
         }else{
             mView.onCompleted();
         }
 
-    }
-
-    protected TAG getTag(){
-        return mTag;
     }
 }
