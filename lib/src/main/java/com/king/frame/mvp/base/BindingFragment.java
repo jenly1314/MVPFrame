@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
+ * DataBinding的Fragment
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public abstract class BindingFragment<V extends BaseView, P extends BasePresenter<V>,VDB extends ViewDataBinding> extends QuickFragment<V,P> {

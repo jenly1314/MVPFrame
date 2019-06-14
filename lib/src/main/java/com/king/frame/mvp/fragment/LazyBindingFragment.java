@@ -7,6 +7,7 @@ import com.king.frame.mvp.base.BaseView;
 import com.king.frame.mvp.base.BindingFragment;
 
 /**
+ * 懒加载BindingFragment
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public abstract class LazyBindingFragment<V extends BaseView, P extends BasePresenter<V>,VDB extends ViewDataBinding> extends BindingFragment<V,P,VDB> {

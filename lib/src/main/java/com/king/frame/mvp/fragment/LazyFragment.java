@@ -5,6 +5,7 @@ import com.king.frame.mvp.base.BaseView;
 import com.king.frame.mvp.base.QuickFragment;
 
 /**
+ * 懒加载Fragment
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public abstract class LazyFragment<V extends BaseView, P extends BasePresenter<V>> extends QuickFragment<V,P> {
