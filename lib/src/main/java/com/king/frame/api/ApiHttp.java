@@ -1,17 +1,14 @@
 package com.king.frame.api;
 
-import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
-import android.support.v4.util.LruCache;
-import android.support.v4.util.Preconditions;
 
 import com.king.frame.util.SSLSocketFactoryUtils;
 
 import org.apache.http.conn.ssl.SSLSocketFactory;
 
+import java.lang.Class;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.WeakHashMap;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -30,7 +27,7 @@ public class ApiHttp {
      */
     public static final int DEFAULT_TIME_OUT = 15;
 
-    private int mTimeout = DEFAULT_TIME_OUT;
+    private int mTimeout;
 
     private String mBaseUrl;
 
@@ -41,20 +38,28 @@ public class ApiHttp {
     private Map<String,Object> mRetrofitServiceCache;
 
 
+    /**
+     * 构造
+     * @param baseUrl
+     */
     public ApiHttp(String baseUrl){
         this(baseUrl,DEFAULT_TIME_OUT);
     }
 
     /**
-     *
+     * 构造
      * @param baseUrl
-     * @param timeout  超时时间 单位/秒
+     * @param timeout  超时时间 单位/秒，默认{@link #DEFAULT_TIME_OUT}
      */
     public ApiHttp(String baseUrl,int timeout){
         this.mBaseUrl = baseUrl;
         this.mTimeout = timeout;
     }
 
+    /**
+     * 获得{@link Retrofit}
+     * @return {@link #mRetrofit}
+     */
     public Retrofit getRetrofit(){
         if(mRetrofit == null){
             mRetrofit = new Retrofit.Builder()
@@ -67,6 +72,10 @@ public class ApiHttp {
         return mRetrofit;
     }
 
+    /**
+     * 获得{@link OkHttpClient}
+     * @return {@link #mOkHttpClient}
+     */
     public OkHttpClient getOkHttpClient(){
         if(mOkHttpClient == null) {
             mOkHttpClient = new OkHttpClient.Builder()
@@ -82,14 +91,28 @@ public class ApiHttp {
         return mOkHttpClient;
     }
 
+    /**
+     * 对外暴露方法，提供自定义配置{@link OkHttpClient}
+     * @param okHttpClient
+     */
     public void setOkHttpClient(OkHttpClient okHttpClient) {
         this.mOkHttpClient = okHttpClient;
     }
 
+    /**
+     * 对外暴露方法，提供自定义配置{@link Retrofit}
+     * @param retrofit
+     */
     public void setRetrofit(Retrofit retrofit) {
         this.mRetrofit = retrofit;
     }
 
+    /**
+     * 传入Class 通过{@link Retrofit#create(Class)}获得对应的Class
+     * @param service
+     * @param <T>
+     * @return
+     */
     public <T> T getRetrofitService(@NonNull Class<T> service) {
         if(mRetrofitServiceCache == null){
             mRetrofitServiceCache = new HashMap<>();

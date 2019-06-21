@@ -9,13 +9,10 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StyleRes;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
-import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.PopupWindow;
 
 import com.king.frame.R;
@@ -25,8 +22,6 @@ import com.king.frame.R;
  */
 
 public abstract class QuickDialogFragment<V extends BaseView, P extends BasePresenter<V>> extends BaseDialogFragment<V, P> implements BaseView {
-
-    protected static final float DEFAULT_WIDTH_RATIO = 0.85f;
 
     private Dialog mDialog;
 
@@ -144,7 +139,7 @@ public abstract class QuickDialogFragment<V extends BaseView, P extends BasePres
     }
 
     protected void showProgressDialog(){
-        showProgressDialog(R.layout.progress_dialog);
+        showProgressDialog(R.layout.mvpframe_progress_dialog);
     }
 
     protected void showProgressDialog(@LayoutRes int resId){
@@ -194,26 +189,6 @@ public abstract class QuickDialogFragment<V extends BaseView, P extends BasePres
 
     }
 
-    protected void setDialogWindow(Dialog dialog,float widthRatio){
-        Window window = dialog.getWindow();
-        WindowManager.LayoutParams lp = window.getAttributes();
-        lp.width = (int)(getWidthPixels()*widthRatio);
-        window.setAttributes(lp);
-    }
-
-    //---------------------------------------
-
-    protected DisplayMetrics getDisplayMetrics(){
-        return getResources().getDisplayMetrics();
-    }
-
-    protected int getWidthPixels(){
-        return getDisplayMetrics().widthPixels;
-    }
-
-    protected int getHeightPixels(){
-        return getDisplayMetrics().heightPixels;
-    }
 
     //---------------------------------------
 

@@ -1,7 +1,7 @@
 //App
 def app_version = [:]
-app_version.versionCode = 10
-app_version.versionName = "1.1.1"
+app_version.versionCode = 12
+app_version.versionName = "1.1.3"
 ext.app_version = app_version
 
 //build version
@@ -30,18 +30,21 @@ versions.espresso = "3.0.2"
 versions.mosby = "3.1.1"
 
 //retrofit
-versions.retrofit = "2.5.0"
+versions.retrofit = "2.6.0"
 
-versions.rxjava = "2.2.8"
+versions.rxjava = "2.2.9"
 versions.rxandroid = "2.1.1"
 
 versions.timber = "4.7.1"
+
+versions.base = "3.2.0"
 
 
 //support
 def support = [:]
 support.design = "com.android.support:design:$versions.supportLibrary"
 support.appcompat = "com.android.support:appcompat-v7:$versions.supportLibrary"
+support.recyclerview = "com.android.support:recyclerview-v7:$versions.supportLibrary"
 support.constraintlayout = "com.android.support.constraint:constraint-layout:$versions.constraintLayout"
 deps.support = support
 
@@ -66,10 +69,17 @@ retrofit.converter_gson = "com.squareup.retrofit2:converter-gson:$versions.retro
 retrofit.adapter_rxjava = "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
 deps.retrofit = retrofit
 
+//jenly1314
+def jenly = [:]
+jenly.base_adapter = "com.king.base:adapter:$versions.base"
+jenly.base_util = "com.king.base:util:$versions.base"
+deps.jenly = jenly
+
 deps.rxjava = "io.reactivex.rxjava2:rxjava:$versions.rxjava"
 deps.rxandroid = "io.reactivex.rxjava2:rxandroid:$versions.rxandroid"
 
 deps.timber = "com.jakewharton.timber:timber:$versions.timber"
+
 
 ext.deps = deps
 

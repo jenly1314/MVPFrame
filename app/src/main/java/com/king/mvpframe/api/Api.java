@@ -6,6 +6,8 @@ import com.king.frame.api.SimpleCallback;
 import com.king.mvpframe.bean.PoetryInfo;
 import com.king.mvpframe.bean.Result;
 
+import java.util.List;
+
 /**
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
@@ -14,7 +16,7 @@ public class Api {
 
     private ApiService mApiService;
 
-    private static Api sInstance;
+    private volatile static Api sInstance;
 
     public static Api getInstance(){
         if(sInstance == null){
@@ -35,7 +37,7 @@ public class Api {
      * 获取推荐诗词
      * @param callback
      */
-    public void getRecommendPoetry(SimpleCallback<Result<PoetryInfo>> callback){
+    public void getRecommendPoetry(SimpleCallback<Result<List<PoetryInfo>>> callback){
         ApiObserver.subscribe(mApiService.getRecommendPoetry(),callback);
     }
 

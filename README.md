@@ -22,17 +22,17 @@ MVPFrame for Android 是一个集合了 Retrofit2 + RXJava2 + OkHttp3 + Mosby3 �
 <dependency>
   <groupId>com.king.frame</groupId>
   <artifactId>mvpframe</artifactId>
-  <version>1.1.1</version>
+  <version>1.1.3</version>
   <type>pom</type>
 </dependency>
 ```
 ### Gradle:
 ```gradle
-implementation 'com.king.frame:mvpframe:1.1.1'
+implementation 'com.king.frame:mvpframe:1.1.3'
 ```
 ### Lvy:
 ```lvy
-<dependency org='com.king.frame' name='mvpframe' rev='1.1.1'>
+<dependency org='com.king.frame' name='mvpframe' rev='1.1.3'>
   <artifact name='$AID' ext='pom'></artifact>
 </dependency>
 ```
@@ -57,11 +57,11 @@ allprojects {
     // MVP + ViewState support
     api 'com.hannesdorfmann.mosby3:viewstate:3.1.1'
 
-    api 'com.squareup.retrofit2:retrofit:2.5.0'
-    api 'com.squareup.retrofit2:converter-gson:2.5.0'
-    api 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
+    api 'com.squareup.retrofit2:retrofit:2.6.0'
+    api 'com.squareup.retrofit2:converter-gson:2.6.0'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.6.0'
 
-    api 'io.reactivex.rxjava2:rxjava:2.2.8'
+    api 'io.reactivex.rxjava2:rxjava:2.2.9'
     api 'io.reactivex.rxjava2:rxandroid:2.1.1'
 
     api 'com.jakewharton.timber:timber:4.7.1'
@@ -122,9 +122,16 @@ Step.3 定义一个类似于[app](app)中的Api来管理接口
 
 ## 版本记录
 
-#### v1.1.1：2019-4-29
+#### v1.1.3：2019-6-21
+*  Retrofit更新至v2.6.0
+*  RxJava更新至v2.2.9
+
+#### v1.1.2：2019-5-27
+*  完善BindingFragment相关子类
+
+#### v1.1.3：2019-4-29
 *  新增DataBinding支持
-*  Retrofit更新至v2.5.0
+*  Retrofit更新至v2.6.0
 *  RxJava更新至v2.2.8
 *  RxAndroid更新至v2.1.1
 

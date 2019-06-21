@@ -141,7 +141,7 @@ public abstract class QuickActivity<V extends BaseView, P extends BasePresenter<
     }
 
     protected void showProgressDialog(boolean isCancel){
-        showProgressDialog(R.layout.progress_dialog,isCancel);
+        showProgressDialog(R.layout.mvpframe_progress_dialog,isCancel);
     }
 
     protected void showProgressDialog(@LayoutRes int resId){

@@ -12,7 +12,7 @@ public class ApiManager {
 
     private static String mBaseUrl;
     private static int mTimeout = ApiHttp.DEFAULT_TIME_OUT;
-    private static ApiManager mInstance;
+    private volatile static ApiManager mInstance;
 
     public static ApiManager getInstance(){
         if(mInstance == null){

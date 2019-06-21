@@ -1,15 +1,29 @@
-package com.king.mvpframe;
+package com.king.mvpframe.mvp.ui;
 
 import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
 
+import com.king.base.adapter.divider.DividerItemDecoration;
 import com.king.frame.mvp.base.BindingActivity;
+import com.king.mvpframe.R;
 import com.king.mvpframe.bean.PoetryInfo;
 import com.king.mvpframe.bean.Result;
 import com.king.mvpframe.databinding.MainActivityBinding;
+import com.king.mvpframe.databinding.RvPoetryItemBinding;
+import com.king.mvpframe.mvp.ui.adapter.BindingAdapter;
+import com.king.mvpframe.mvp.iview.PoetryView;
 import com.king.mvpframe.mvp.presenter.PoetryPresenter;
-import com.king.mvpframe.mvp.view.PoetryView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends BindingActivity<PoetryView,PoetryPresenter,MainActivityBinding> implements PoetryView {
+
+    private BindingAdapter<PoetryInfo, RvPoetryItemBinding> mAdapter;
+
+    private List<PoetryInfo> listData;
+
+
     @Override
     public int getRootViewId() {
         return R.layout.main_activity;
@@ -18,7 +32,21 @@ public class MainActivity extends BindingActivity<PoetryView,PoetryPresenter,Mai
     @Override
     public void initUI() {
 
-        mBinding.srl.setOnRefreshListener(()-> getPresenter().getRecommendPoetry());
+        mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mBinding.recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL,R.drawable.list_divider_8));
+
+        listData = new ArrayList<>();
+        mAdapter = new BindingAdapter<>(getContext(),listData,R.layout.rv_poetry_item);
+
+        mBinding.recyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemClickListener((v, position) -> {
+            PoetryInfo data = mAdapter.getItem(position);
+            showDialogFragment(PoetryInfoDialogFragment.newInstance(data));
+        });
+
+        mBinding.srl.setOnRefreshListener(() -> getPresenter().getRecommendPoetry());
+
     }
 
     @Override
@@ -57,10 +85,10 @@ public class MainActivity extends BindingActivity<PoetryView,PoetryPresenter,Mai
      * @param result
      */
     @Override
-    public void onGetRecommendPoetry(Result<PoetryInfo> result) {
+    public void onGetRecommendPoetry(Result<List<PoetryInfo>> result) {
         if(result!=null){
             if(result.isSuccess()){
-                mBinding.setData(result.getData());
+                mAdapter.refreshData(result.getData());
             }
         }
     }

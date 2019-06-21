@@ -21,11 +21,18 @@ public abstract class ContentActivity extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate( savedInstanceState);
-        setContentView( R.layout.activity_content );
+        setContentView( R.layout.mvpframe_content_activity);
 
         switchFragment(getIntent());
     }
 
+    /**
+     * use {@link #findViewById(int)}
+     * @param id
+     * @param <T>
+     * @return
+     */
+    @Deprecated
     public <T extends View> T findView(@IdRes int id){
         return (T)findViewById(id);
     }

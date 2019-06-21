@@ -10,7 +10,6 @@ public class Result<T> {
 
     private String message;
 
-    @SerializedName("result")
     private T data;
 
     public int getCode() {
@@ -38,7 +37,7 @@ public class Result<T> {
     }
 
     public boolean isSuccess(){
-        return  code == 200;
+        return  code == 0;
     }
 
     @Override

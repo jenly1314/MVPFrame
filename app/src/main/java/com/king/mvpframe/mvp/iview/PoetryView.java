@@ -1,8 +1,10 @@
-package com.king.mvpframe.mvp.view;
+package com.king.mvpframe.mvp.iview;
 
 import com.king.frame.mvp.base.BaseView;
 import com.king.mvpframe.bean.PoetryInfo;
 import com.king.mvpframe.bean.Result;
+
+import java.util.List;
 
 
 /**
@@ -12,5 +14,5 @@ import com.king.mvpframe.bean.Result;
 
 public interface PoetryView extends BaseView {
 
-    void onGetRecommendPoetry(Result<PoetryInfo> result);
+    void onGetRecommendPoetry(Result<List<PoetryInfo>> result);
 }
