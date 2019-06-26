@@ -130,7 +130,7 @@ Step.3 定义一个类似于[app](app)中的Api来管理接口
 #### v1.1.2：2019-5-27
 *  完善BindingFragment相关子类
 
-#### v1.1.3：2019-4-29
+#### v1.1.1：2019-4-29
 *  新增DataBinding支持
 *  Retrofit更新至v2.6.0
 *  RxJava更新至v2.2.8
