@@ -1,5 +1,4 @@
 package com.king.mvpframe.bean;
-import com.google.gson.annotations.SerializedName;
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
